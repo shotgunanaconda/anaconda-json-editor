@@ -1,26 +1,50 @@
 {
-  "player": {
-    "health": 100,
-    "maxHealth": 100,
-    "speed": 5.5,
-    "name": "Hero"
-  },
-  "weapon": {
-    "gun": {
-      "bulletrange": 500,
-      "damage": 25,
-      "fireRate": 0.5,
-      "ammo": 30
-    },
-    "sword": {
-      "damage": 50,
-      "range": 2,
-      "attackSpeed": 1.2
-    }
-  },
+  "gameName": "Anaconda Quest",
+  "version": "1.0.4",
   "settings": {
-    "difficulty": "normal",
-    "soundEnabled": true,
-    "musicVolume": 0.7
-  }
+    "difficulty": "Hard",
+    "autoSave": true,
+    "maxPlayers": 4,
+    "volume": 0.85
+  },
+  "heroes": [
+    {
+      "name": "Slinky",
+      "class": "Assassin",
+      "stats": {
+        "health": 100,
+        "speed": 12,
+        "poison": true
+      },
+      "inventory": [
+        "Rusty Dagger",
+        "Health Potion"
+      ]
+    },
+    {
+      "name": "Boa",
+      "class": "Warrior",
+      "stats": {
+        "health": 250,
+        "speed": 6,
+        "poison": false
+      },
+      "inventory": [
+        "Heavy Shield",
+        "Iron Mace"
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "name": "Whispering Woods",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "name": "Serpent's Pass",
+      "completed": false
+    }
+  ]
 }
