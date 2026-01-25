@@ -26,7 +26,7 @@ Unlike generic JSON formatters, Anaconda is built as a **productivity tool**:
 
 ## 📖 Quick Start
 
-1. **Open**: `index.html` in any modern browser. or visit https://shotgunanaconda.github.io/anaconda-json-editor/
+1. **Open**: `index.html` in any modern browser or visit https://shotgunanaconda.github.io/anaconda-json-editor/
 2. **Load**: Click "Open File" to grab your game configuration.
 3. **Edit**: Use the tree to navigate and the Editor panel to modify data.
 4. **Save**: Click "Save" to update your file instantly.
