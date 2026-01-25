@@ -1,0 +1,26 @@
+{
+  "player": {
+    "health": 100,
+    "maxHealth": 100,
+    "speed": 5.5,
+    "name": "Hero"
+  },
+  "weapon": {
+    "gun": {
+      "bulletrange": 500,
+      "damage": 25,
+      "fireRate": 0.5,
+      "ammo": 30
+    },
+    "sword": {
+      "damage": 50,
+      "range": 2,
+      "attackSpeed": 1.2
+    }
+  },
+  "settings": {
+    "difficulty": "normal",
+    "soundEnabled": true,
+    "musicVolume": 0.7
+  }
+}
