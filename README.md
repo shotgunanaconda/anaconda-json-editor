@@ -19,7 +19,7 @@ Unlike generic JSON formatters, Anaconda is built as a **productivity tool**:
 - **🏷️ Real-Time Type Badges**: Every key in the tree shows its type (e.g., `[string]`, `[number]`). It acts as a visual linter to ensure your game engine gets the data format it expects.
 - **💾 Native File Access**: Uses the modern File System Access API. No more "Download to save"—hit Save and your local file is updated directly.
 
-<img width="1240" height="995" alt="image" src="https://github.com/user-attachments/assets/264fd8e5-3f9c-489d-905d-9e7f3c6c3594" />
+<img width="1241" height="968" alt="image" src="https://github.com/user-attachments/assets/b09d0348-6154-46b8-b77b-f72b53e804da" />
 
 ## 🛠️ Tech Stack
 
