@@ -5,9 +5,12 @@ class JSONEditor {
         this.currentFileName = null;
         this.fileHandle = null; // Store the file handle for real saving
         this.selectedPath = null;
-        this.templateFields = []; // Array of field names to auto-create
+        this.templateFields = []; // Current fields for the active template
+        this.savedTemplates = { "Default": [] }; // Library of named templates
+        this.currentTemplateName = 'Default';
 
         this.initializeElements();
+        this.loadTemplatesFromStorage();
         this.attachEventListeners();
         this.updateStatus('Ready - Create or open a JSON file to begin');
         console.log('[JSON-EDITOR] Initialized');
@@ -50,6 +53,9 @@ class JSONEditor {
         this.fileNameDisplay = document.getElementById('fileNameDisplay');
         this.templateFieldsList = document.getElementById('templateFieldsList');
         this.applyTemplateCheckbox = document.getElementById('applyTemplateCheckbox');
+        this.templateSelector = document.getElementById('templateSelector');
+        this.saveTemplateBtn = document.getElementById('saveTemplateBtn');
+        this.deleteTemplateBtn = document.getElementById('deleteTemplateBtn');
     }
 
     attachEventListeners() {
@@ -63,6 +69,9 @@ class JSONEditor {
         this.expandAllBtn.addEventListener('click', () => this.expandAll());
         this.collapseAllBtn.addEventListener('click', () => this.collapseAll());
         this.addTemplateBtn.addEventListener('click', () => this.addTemplateField());
+        this.saveTemplateBtn.addEventListener('click', () => this.createNewTemplate());
+        this.deleteTemplateBtn.addEventListener('click', () => this.deleteCurrentTemplate());
+        this.templateSelector.addEventListener('change', (e) => this.switchTemplate(e.target.value));
 
         this.fileInput.addEventListener('change', (e) => this.handleFileSelectFallback(e));
         this.valueType.addEventListener('change', () => this.handleValueTypeChange());
@@ -275,6 +284,9 @@ class JSONEditor {
         this.templateFieldInput.disabled = false;
         this.addTemplateBtn.disabled = false;
         this.applyTemplateCheckbox.disabled = false;
+        this.templateSelector.disabled = false;
+        this.saveTemplateBtn.disabled = false;
+        this.deleteTemplateBtn.disabled = false;
     }
 
     renderTree() {
@@ -569,6 +581,7 @@ class JSONEditor {
 
         this.templateFields.push(fieldName);
         this.renderTemplateFields();
+        this.saveTemplatesToStorage(); // Auto-save current template state
         this.templateFieldInput.value = '';
         this.templateFieldInput.focus();
     }
@@ -576,6 +589,85 @@ class JSONEditor {
     removeTemplateField(fieldName) {
         this.templateFields = this.templateFields.filter(f => f !== fieldName);
         this.renderTemplateFields();
+        this.saveTemplatesToStorage();
+    }
+
+    createNewTemplate() {
+        const name = prompt('Name for the new template:');
+        if (!name) return;
+
+        if (this.savedTemplates[name]) {
+            alert('A template with this name already exists.');
+            return;
+        }
+
+        // Create new template (starts empty)
+        this.savedTemplates[name] = [];
+        this.currentTemplateName = name;
+        this.templateFields = [];
+
+        this.saveTemplatesToStorage();
+        this.renderTemplateSelector();
+        this.renderTemplateFields();
+        this.updateStatus(`✨ Created new template: ${name}`);
+    }
+
+    deleteCurrentTemplate() {
+        if (this.currentTemplateName === 'Default') {
+            alert('Cannot delete the Default template');
+            return;
+        }
+
+        if (!confirm(`Delete template "${this.currentTemplateName}"?`)) return;
+
+        delete this.savedTemplates[this.currentTemplateName];
+        this.currentTemplateName = 'Default';
+        this.templateFields = [...(this.savedTemplates['Default'] || [])];
+
+        this.saveTemplatesToStorage();
+        this.renderTemplateSelector();
+        this.renderTemplateFields();
+        this.updateStatus(`🗑️ Deleted template`);
+    }
+
+    switchTemplate(name) {
+        this.currentTemplateName = name;
+        this.templateFields = [...(this.savedTemplates[name] || [])];
+        this.renderTemplateFields();
+        this.updateStatus(`📋 Switched to: ${name}`);
+    }
+
+    renderTemplateSelector() {
+        const current = this.currentTemplateName;
+        this.templateSelector.innerHTML = '';
+        Object.keys(this.savedTemplates).forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            option.selected = name === current;
+            this.templateSelector.appendChild(option);
+        });
+    }
+
+    loadTemplatesFromStorage() {
+        try {
+            const saved = localStorage.getItem('anaconda_templates');
+            if (saved) {
+                this.savedTemplates = JSON.parse(saved);
+                // Ensure Default always exists
+                if (!this.savedTemplates['Default']) this.savedTemplates['Default'] = [];
+            }
+        } catch (e) {
+            console.error('Failed to load templates from localStorage', e);
+        }
+        this.renderTemplateSelector();
+        this.switchTemplate(this.currentTemplateName);
+    }
+
+    saveTemplatesToStorage() {
+        // Update the current template in the library before saving
+        this.savedTemplates[this.currentTemplateName] = [...this.templateFields];
+        localStorage.setItem('anaconda_templates', JSON.stringify(this.savedTemplates));
     }
 
     renderTemplateFields() {

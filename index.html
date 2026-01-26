@@ -103,13 +103,24 @@
                     <!-- Template Fields Section -->
                     <div class="template-header">
                         <label class="label">
-                            Auto-Template Fields
-                            <span class="label-hint">(auto-created for new objects)</span>
+                            Auto-Template Library
+                            <span class="label-hint">(switch between presets)</span>
                         </label>
                         <label class="toggle-container">
                             <input type="checkbox" id="applyTemplateCheckbox" checked>
                             <span class="toggle-label">Apply Template</span>
                         </label>
+                    </div>
+                    <div class="template-library-controls">
+                        <select id="templateSelector" class="select flex-1">
+                            <option value="default">Default Template</option>
+                        </select>
+                        <button id="saveTemplateBtn" class="btn btn-secondary" title="Create new template preset">
+                            <span class="icon">✨</span> New
+                        </button>
+                        <button id="deleteTemplateBtn" class="btn btn-danger btn-icon" title="Delete current template">
+                            <span>🗑️</span>
+                        </button>
                     </div>
                     <div class="template-controls">
                         <input type="text" id="templateFieldInput" class="input flex-1" placeholder="e.g., description"

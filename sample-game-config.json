@@ -1,11 +1,43 @@
 {
   "gameName": "Anaconda Quest",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "settings": {
     "difficulty": "Hard",
     "autoSave": true,
     "maxPlayers": 4,
     "volume": 0.85
+  },
+  "library": {
+    "weapons": {
+      "Rusty Dagger": {
+        "id": "wd_001",
+        "damage": 5,
+        "speed": 1.2,
+        "rarity": "Common",
+        "description": "A bit dull, but gets the job done."
+      },
+      "Iron Mace": {
+        "id": "wm_002",
+        "damage": 12,
+        "speed": 0.8,
+        "rarity": "Uncommon",
+        "description": "Heavy and reliable."
+      }
+    },
+    "enemies": {
+      "Slime": {
+        "health": 20,
+        "xp": 10,
+        "lootTable": "basic_drops",
+        "aggressive": false
+      },
+      "Shadow Stalker": {
+        "health": 85,
+        "xp": 150,
+        "lootTable": "rare_drops",
+        "aggressive": true
+      }
+    }
   },
   "heroes": [
     {
@@ -20,19 +52,6 @@
         "Rusty Dagger",
         "Health Potion"
       ]
-    },
-    {
-      "name": "Boa",
-      "class": "Warrior",
-      "stats": {
-        "health": 250,
-        "speed": 6,
-        "poison": false
-      },
-      "inventory": [
-        "Heavy Shield",
-        "Iron Mace"
-      ]
     }
   ],
   "levels": [
@@ -40,11 +59,6 @@
       "id": 1,
       "name": "Whispering Woods",
       "completed": true
-    },
-    {
-      "id": 2,
-      "name": "Serpent's Pass",
-      "completed": false
     }
   ]
 }
