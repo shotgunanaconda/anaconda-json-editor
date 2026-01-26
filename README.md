@@ -19,6 +19,8 @@ Unlike generic JSON formatters, Anaconda is built as a **productivity tool**:
 - **🏷️ Real-Time Type Badges**: Every key in the tree shows its type (e.g., `[string]`, `[number]`). It acts as a visual linter to ensure your game engine gets the data format it expects.
 - **💾 Native File Access**: Uses the modern File System Access API. No more "Download to save"—hit Save and your local file is updated directly.
 
+<img width="620" height="509" alt="image" src="https://github.com/user-attachments/assets/34ad6c14-2ac1-4c13-b651-90e4aba86c3a" />
+
 ## 🛠️ Tech Stack
 
 - **Pure Performance**: Built with Vanilla ES6+ JavaScript and CSS3. Zero dependencies, zero bloat.
@@ -26,7 +28,7 @@ Unlike generic JSON formatters, Anaconda is built as a **productivity tool**:
 
 ## 📖 Quick Start
 
-1. **Open**: `index.html` in any modern browser.
+1. **Open**: `index.html` in any modern browser or visit https://shotgunanaconda.github.io/anaconda-json-editor/
 2. **Load**: Click "Open File" to grab your game configuration.
 3. **Edit**: Use the tree to navigate and the Editor panel to modify data.
 4. **Save**: Click "Save" to update your file instantly.
