@@ -15,7 +15,7 @@ Unlike generic JSON formatters, Anaconda is built as a **productivity tool**:
 - **⌨️ Keyboard-First Workflow**:
   - `Enter`: Context-aware submission (automatically switches between "Create" and "Update").
   - `Delete`: Instant node removal with a dedicated keyboard shortcut.
-- **📋 Object Templating**: Define a set of "Template Fields" (e.g., `id`, `name`, `rarity`). Every time you create a new object, Anaconda automatically populates it with those fields, saving you from repetitive typing.
+- **📋 Object Templating**: Define a set of "Template Fields" (e.g., `id`, `name`, `rarity`). Every time you create a new object, Anaconda automatically populates it with those fields, saving you from repetitive typing. You can also create multiple templates for different categories of keys.
 - **🏷️ Real-Time Type Badges**: Every key in the tree shows its type (e.g., `[string]`, `[number]`). It acts as a visual linter to ensure your game engine gets the data format it expects.
 - **💾 Native File Access**: Uses the modern File System Access API. No more "Download to save"—hit Save and your local file is updated directly.
 
