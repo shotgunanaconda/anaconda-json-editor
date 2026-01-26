@@ -12,7 +12,11 @@ class JSONEditor {
         this.initializeElements();
         this.loadTemplatesFromStorage();
         this.attachEventListeners();
-        this.updateStatus('Ready - Create or open a JSON file to begin');
+
+        // Auto-Start: Create a new file immediately
+        this.createNewFile();
+
+        this.updateStatus('Ready - Start editing or paste JSON');
         console.log('[JSON-EDITOR] Initialized');
     }
 
@@ -56,6 +60,14 @@ class JSONEditor {
         this.templateSelector = document.getElementById('templateSelector');
         this.saveTemplateBtn = document.getElementById('saveTemplateBtn');
         this.deleteTemplateBtn = document.getElementById('deleteTemplateBtn');
+
+        // Modal Elements
+        this.pasteJsonBtn = document.getElementById('pasteJsonBtn');
+        this.pasteModal = document.getElementById('pasteModal');
+        this.pasteArea = document.getElementById('pasteArea');
+        this.importPasteBtn = document.getElementById('importPasteBtn');
+        this.cancelPasteBtn = document.getElementById('cancelPasteBtn');
+        this.closePasteModalBtn = document.getElementById('closePasteModalBtn');
     }
 
     attachEventListeners() {
@@ -72,6 +84,19 @@ class JSONEditor {
         this.saveTemplateBtn.addEventListener('click', () => this.createNewTemplate());
         this.deleteTemplateBtn.addEventListener('click', () => this.deleteCurrentTemplate());
         this.templateSelector.addEventListener('change', (e) => this.switchTemplate(e.target.value));
+
+        // Modal Events
+        this.pasteJsonBtn.addEventListener('click', () => this.openPasteModal());
+        this.cancelPasteBtn.addEventListener('click', () => this.closePasteModal());
+        this.closePasteModalBtn.addEventListener('click', () => this.closePasteModal());
+        this.importPasteBtn.addEventListener('click', () => this.importPastedJSON());
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.pasteModal.style.display === 'flex') {
+                this.closePasteModal();
+            }
+        });
 
         this.fileInput.addEventListener('change', (e) => this.handleFileSelectFallback(e));
         this.valueType.addEventListener('change', () => this.handleValueTypeChange());
@@ -206,9 +231,28 @@ class JSONEditor {
             this.updateStatus(`Opened: ${fileName}`);
             this.fileNameDisplay.textContent = fileName;
         } catch (error) {
-            this.updateStatus(`Error: Invalid JSON file - ${error.message}`, true);
-            alert('Invalid JSON file. Please select a valid JSON file.');
+            this.updateStatus(`Error: Invalid JSON - ${error.message}`, true);
+            alert('Invalid JSON content. Please check your syntax.');
         }
+    }
+
+    openPasteModal() {
+        this.pasteArea.value = '';
+        this.pasteModal.style.display = 'flex';
+        this.pasteArea.focus();
+    }
+
+    closePasteModal() {
+        this.pasteModal.style.display = 'none';
+    }
+
+    importPastedJSON() {
+        const text = this.pasteArea.value.trim();
+        if (!text) return;
+
+        this.processFileData(text, 'pasted-data.json');
+        this.closePasteModal();
+        this.updateStatus('✨ Imported JSON from paste');
     }
 
     async saveFile() {

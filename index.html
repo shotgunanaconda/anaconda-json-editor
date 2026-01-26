@@ -30,6 +30,9 @@
                 <button id="saveAsFileBtn" class="btn btn-secondary" disabled title="Save As (Choose new location)">
                     <span class="icon">💾</span> Save As...
                 </button>
+                <button id="pasteJsonBtn" class="btn btn-secondary">
+                    <span class="icon">📋</span> Paste JSON
+                </button>
             </div>
         </header>
 
@@ -171,6 +174,28 @@
 
     <!-- Hidden file input (fallback) -->
     <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <!-- Paste JSON Modal -->
+    <div id="pasteModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="panel-header">
+                <h2>Paste JSON</h2>
+                <button id="closePasteModalBtn" class="btn-icon"><span>✕</span></button>
+            </div>
+            <div class="panel-content">
+                <p class="hint">Paste your raw JSON content below to import it into the editor.</p>
+                <textarea id="pasteArea" class="input"
+                    style="height: 300px; font-family: 'Courier New', monospace; margin: 15px 0;"
+                    placeholder='{ "example": "data" }'></textarea>
+                <div class="modal-actions">
+                    <button id="importPasteBtn" class="btn btn-primary">
+                        <span class="icon">✨</span> Import JSON
+                    </button>
+                    <button id="cancelPasteBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
