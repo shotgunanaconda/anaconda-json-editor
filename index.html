@@ -101,56 +101,61 @@
                     </div>
 
                     <!-- Template Fields Section -->
-                    <div class="editor-section template-section">
+                    <div class="template-header">
                         <label class="label">
                             Auto-Template Fields
                             <span class="label-hint">(auto-created for new objects)</span>
                         </label>
-                        <div class="template-controls">
-                            <input type="text" id="templateFieldInput" class="input flex-1"
-                                placeholder="e.g., description" disabled>
-                            <button id="addTemplateBtn" class="btn btn-secondary" disabled>
-                                <span class="icon">➕</span> Add
-                            </button>
-                        </div>
-                        <div id="templateFieldsList" class="template-list">
-                            <div class="empty-state-small">
-                                <p>No template fields defined</p>
-                            </div>
-                        </div>
+                        <label class="toggle-container">
+                            <input type="checkbox" id="applyTemplateCheckbox" checked>
+                            <span class="toggle-label">Apply Template</span>
+                        </label>
                     </div>
-
-                    <!-- Action Buttons -->
-                    <div class="editor-actions">
-                        <button id="createKeyBtn" class="btn btn-primary" disabled>
-                            <span class="icon">✨</span> Create Key
-                        </button>
-                        <button id="updateValueBtn" class="btn btn-primary" disabled style="display: none;">
-                            <span class="icon">✏️</span> Update Value
-                        </button>
-                        <button id="deleteKeyBtn" class="btn btn-danger" disabled>
-                            <span class="icon">🗑️</span> Delete
+                    <div class="template-controls">
+                        <input type="text" id="templateFieldInput" class="input flex-1" placeholder="e.g., description"
+                            disabled>
+                        <button id="addTemplateBtn" class="btn btn-secondary" disabled>
+                            <span class="icon">➕</span> Add
                         </button>
                     </div>
+                    <div id="templateFieldsList" class="template-list">
+                        <div class="empty-state-small">
+                            <p>No template fields defined</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Current Selection Display -->
-                    <div class="editor-section">
-                        <label class="label">Current Selection</label>
-                        <div id="currentValue" class="current-value">
-                            <div class="empty-state-small">
-                                <p>No key selected</p>
-                            </div>
+                <!-- Action Buttons -->
+                <div class="editor-actions">
+                    <button id="createKeyBtn" class="btn btn-primary" disabled>
+                        <span class="icon">✨</span> Create Key
+                    </button>
+                    <button id="updateValueBtn" class="btn btn-primary" disabled style="display: none;">
+                        <span class="icon">✏️</span> Update Value
+                    </button>
+                    <button id="deleteKeyBtn" class="btn btn-danger" disabled>
+                        <span class="icon">🗑️</span> Delete
+                    </button>
+                </div>
+
+                <!-- Current Selection Display -->
+                <div class="editor-section">
+                    <label class="label">Current Selection</label>
+                    <div id="currentValue" class="current-value">
+                        <div class="empty-state-small">
+                            <p>No key selected</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <div id="statusText" class="status-text">Ready</div>
-            <div id="fileNameDisplay" class="file-name"></div>
-        </div>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div id="statusText" class="status-text">Ready</div>
+        <div id="fileNameDisplay" class="file-name"></div>
+    </div>
     </div>
 
     <!-- Hidden file input (fallback) -->

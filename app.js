@@ -49,6 +49,7 @@ class JSONEditor {
         this.statusText = document.getElementById('statusText');
         this.fileNameDisplay = document.getElementById('fileNameDisplay');
         this.templateFieldsList = document.getElementById('templateFieldsList');
+        this.applyTemplateCheckbox = document.getElementById('applyTemplateCheckbox');
     }
 
     attachEventListeners() {
@@ -273,6 +274,7 @@ class JSONEditor {
         this.createKeyBtn.disabled = false;
         this.templateFieldInput.disabled = false;
         this.addTemplateBtn.disabled = false;
+        this.applyTemplateCheckbox.disabled = false;
     }
 
     renderTree() {
@@ -449,20 +451,25 @@ class JSONEditor {
 
         const fullPath = parentPath ? `${parentPath}.${keyName}` : keyName;
         const type = this.valueType.value;
+        const shouldApplyTemplate = this.applyTemplateCheckbox.checked;
         let value;
 
         if (type === 'object') {
             value = {};
-            this.templateFields.forEach(fieldName => {
-                value[fieldName] = '';
-            });
+            if (shouldApplyTemplate) {
+                this.templateFields.forEach(fieldName => {
+                    value[fieldName] = '';
+                });
+            }
         } else if (type === 'array') {
             value = [];
         } else if (type === 'string' && this.valueInput.value.trim() === '') {
             value = {};
-            this.templateFields.forEach(fieldName => {
-                value[fieldName] = '';
-            });
+            if (shouldApplyTemplate) {
+                this.templateFields.forEach(fieldName => {
+                    value[fieldName] = '';
+                });
+            }
         } else {
             value = this.processInputValue(this.valueInput.value, type);
         }
