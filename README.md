@@ -1,4 +1,4 @@
-# 🐍 Anaconda JSON Editor
+# 🐍 Anaconda Visual JSON Editor
 
 **Anaconda** is a sleek, powerful, and keyboard-optimized JSON editor designed specifically for game developers who are tired of fighting with brackets and deep nesting. It turns JSON data entry from a chore into a high-speed workflow.
 
