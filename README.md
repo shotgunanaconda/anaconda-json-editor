@@ -1,4 +1,4 @@
-# 🐍 Anaconda JSON Editor
+# 🐍 Anaconda Visual JSON Editor
 
 **Anaconda** is a sleek, powerful, and keyboard-optimized JSON editor designed specifically for game developers who are tired of fighting with brackets and deep nesting. It turns JSON data entry from a chore into a high-speed workflow.
 
@@ -15,8 +15,8 @@ Unlike generic JSON formatters, Anaconda is built as a **productivity tool**:
 - **⌨️ Keyboard-First Workflow**:
   - `Enter`: Context-aware submission (automatically switches between "Create" and "Update").
   - `Delete`: Instant node removal with a dedicated keyboard shortcut.
-- **📋 Object Templating**: Define a set of "Template Fields" (e.g., `id`, `name`, `rarity`). Every time you create a new object, Anaconda automatically populates it with those fields, saving you from repetitive typing.
-- **🏷️ Real-Time Type Badges**: Every key in the tree shows its type (e.g., `[string]`, `[number]`). It acts as a visual linter to ensure your game engine gets the data format it expects.
+- **📋 Object Templating**: Define a set of "Template Fields" (e.g., `id`, `name`, `rarity`). Every time you create a new object, Anaconda automatically populates it with those fields, saving you from repetitive typing. You can also create multiple templates for different categories of keys.
+- **🏷️ Real-Time Type Badges**: Every key in the tree shows its type (e.g., `[string]`, `[number]`).
 - **💾 Native File Access**: Uses the modern File System Access API. No more "Download to save"—hit Save and your local file is updated directly.
 
 <img width="620" height="509" alt="image" src="https://github.com/user-attachments/assets/34ad6c14-2ac1-4c13-b651-90e4aba86c3a" />
