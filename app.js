@@ -63,6 +63,7 @@ class JSONEditor {
 
         // Modal Elements
         this.pasteJsonBtn = document.getElementById('pasteJsonBtn');
+        this.copyJsonBtn = document.getElementById('copyJsonBtn');
         this.pasteModal = document.getElementById('pasteModal');
         this.pasteArea = document.getElementById('pasteArea');
         this.importPasteBtn = document.getElementById('importPasteBtn');
@@ -84,6 +85,8 @@ class JSONEditor {
         this.saveTemplateBtn.addEventListener('click', () => this.createNewTemplate());
         this.deleteTemplateBtn.addEventListener('click', () => this.deleteCurrentTemplate());
         this.templateSelector.addEventListener('change', (e) => this.switchTemplate(e.target.value));
+
+        this.copyJsonBtn.addEventListener('click', () => this.copyJson());
 
         // Modal Events
         this.pasteJsonBtn.addEventListener('click', () => this.openPasteModal());
@@ -255,6 +258,31 @@ class JSONEditor {
         this.updateStatus('✨ Imported JSON from paste');
     }
 
+    async copyJson() {
+        if (!this.jsonData) return;
+
+        const jsonString = JSON.stringify(this.jsonData, null, 2);
+
+        try {
+            await navigator.clipboard.writeText(jsonString);
+
+            // Visual feedback: temporarily change button label
+            const btn = this.copyJsonBtn;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="icon">✅</span> Copied!';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }, 2000);
+
+            this.updateStatus('📋 JSON copied to clipboard');
+        } catch (err) {
+            console.error('Failed to copy:', err);
+            this.updateStatus('Failed to copy to clipboard', true);
+        }
+    }
+
     async saveFile() {
         if (!this.jsonData) return;
 
@@ -331,6 +359,7 @@ class JSONEditor {
         this.templateSelector.disabled = false;
         this.saveTemplateBtn.disabled = false;
         this.deleteTemplateBtn.disabled = false;
+        this.copyJsonBtn.disabled = false;
     }
 
     renderTree() {
